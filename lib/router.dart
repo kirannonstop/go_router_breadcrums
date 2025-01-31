@@ -2,6 +2,9 @@ import 'package:go_router/go_router.dart';
 import 'package:go_router_demo/circular.dart';
 import 'package:go_router_demo/contact_us.dart';
 import 'package:go_router_demo/dashboard_page.dart';
+import 'package:go_router_demo/dialog_as_a_route.dart';
+import 'package:go_router_demo/dialog_as_page.dart';
+import 'package:go_router_demo/extensions.dart';
 import 'package:go_router_demo/homework.dart';
 import 'package:go_router_demo/layout.dart';
 import 'package:go_router_demo/message.dart';
@@ -30,6 +33,17 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: '/dashboard/circular',
           builder: (context, state) => const Circular(),
+          routes: [
+            //dialog route
+            GoRoute(
+              path: '/dialog',
+              pageBuilder: (context, state) =>  DialogPage(
+                width: context.width * 0.3,
+                height: context.height * 0.3,
+                builder: (context) =>  const DialogAsARoute(),
+              ),
+            )
+          ]
         ),
       ],
     ),
